@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 13:41:05 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 13:15:14 by yjung            ###   ########.fr       */
+/*   Updated: 2021/05/22 17:10:52 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ t_cmd	*parse_t_cmd(t_cmd *cmds, int *status, t_check *g);
 t_list	*parse_cmd_args(t_list *args_lst, t_check *g);
 // builtin_parser.c
 int		builtin_parser(t_cmd *cmds, t_check *g);
+int		handle_status(int status);
 
 #endif

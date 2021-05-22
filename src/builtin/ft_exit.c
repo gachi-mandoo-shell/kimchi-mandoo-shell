@@ -3,24 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 19:21:46 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 15:27:15 by yjung            ###   ########.fr       */
+/*   Updated: 2021/05/22 17:37:59 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(t_list *args)
+static int	exit_with_arg(t_list *arg)
 {
-	ft_putendl_fd("exit", STDERR_FILENO);
-	if (args)
+	char	*str;
+	int		exit_code;
+
+	exit_code = 0;
+	str = arg->content;
+	while (*str && ft_isdigit(*str))
+		exit_code = (exit_code * 10) + *str++ - '0';
+	if (*str)
 	{
 		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-		ft_putstr_fd(args->content, STDERR_FILENO);
+		ft_putstr_fd(arg->content, STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		exit(255);
 	}
+	if (arg->next)
+	{
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		return (1);
+	}
+	exit(exit_code);
+	return (0);
+}
+
+int	ft_exit(t_list *args)
+{
+	ft_putendl_fd("exit", STDERR_FILENO);
+	if (args)
+		return (exit_with_arg(args));
 	exit(0);
+	return (0);
 }
