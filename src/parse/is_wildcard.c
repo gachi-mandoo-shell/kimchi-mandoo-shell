@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:41:11 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/21 15:17:56 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:03:36 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	is_wildcard(char *str)
 			flag ^= TK_QOUTES;
 		else if (!(flag & ~(TK_QOUTE)) && *str == '\'')
 			flag ^= TK_QOUTE;
-		else if (!(flag & ~(TK_QOUTE)) && *str == '\\')
+		else if (!(flag & ~(TK_QOUTES)) && *str == '\\')
 			flag |= TK_ESCAPE;
-		else if ((flag & TK_ESCAPE) && *(str - 1) != '\\')
+		else if ((flag & TK_ESCAPE) && *(str - 1) == '\\')
 			flag &= ~TK_ESCAPE;
 		++str;
 	}

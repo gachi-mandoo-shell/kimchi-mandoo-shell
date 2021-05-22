@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 23:02:36 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 17:26:53 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:12:45 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_cd(t_list *args);
 int		ft_export(t_list *args);
 int		compare(t_list *a, t_list *b);
 int		ft_unset(t_list *args);
-int		ft_env(t_list *args, t_check *g);
+int		ft_env(void);
 int		ft_pwd(void);
 int		ft_exit(t_list *args);
 

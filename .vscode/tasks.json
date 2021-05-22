@@ -5,8 +5,7 @@
       "label": "build minishell",
       "command": "/usr/bin/make",
       "args": [
-        "fclean",
-        "bonus"
+        "re"
       ],
       "options": {
         "cwd": "${workspaceFolder}",

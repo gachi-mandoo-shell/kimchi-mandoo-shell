@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 13:37:29 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/21 19:48:58 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:03:24 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ static int	handle_flag(char *token, int *flag)
 		*flag ^= TK_QOUTE;
 		return (1);
 	}
-	else if (!(*flag & ~(TK_QOUTE)) && *token == '\\')
+	else if (!(*flag & ~(TK_QOUTES)) && *token == '\\')
 	{
 		*flag |= TK_ESCAPE;
 		return (1);
 	}
-	else if ((*flag & TK_ESCAPE) && *(token - 1) != '\\')
+	else if ((*flag & TK_ESCAPE) && *(token - 1) == '\\')
 		*flag &= ~TK_ESCAPE;
 	return (0);
 }
