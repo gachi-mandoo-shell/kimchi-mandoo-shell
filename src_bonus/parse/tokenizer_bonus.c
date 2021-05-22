@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parse_util.h"
+#include "minishell_bonus.h"
+#include "parse_util_bonus.h"
 
 static int	check_flag(int flag, char **line)
 {
