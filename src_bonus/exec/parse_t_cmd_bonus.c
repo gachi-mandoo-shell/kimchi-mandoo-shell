@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:53:06 by yjung             #+#    #+#             */
-/*   Updated: 2021/05/22 18:24:39 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 18:55:59 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_list	*parse_cmd_args(t_list *args_lst, t_check *g)
 			ft_error_print(PARSE_MALLOC_MSG, NULL, strerror(errno));
 		else if ((int)result == PARSE_CMD_NONE)
 			ft_error_print(PARSE_CMD_NONE_MSG, NULL, strerror(errno));
+		else if ((int)result == PARSE_WILDCARD)
+			ft_error_print(PARSE_WILDCARD_MSG, NULL, NULL);
 		else if (args_lst->content != result->content)
 			g->args_check = 1;
 		return (result);
