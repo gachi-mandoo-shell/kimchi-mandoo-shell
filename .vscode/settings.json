@@ -9,6 +9,7 @@
     "ratio": "c",
     "cursor.h": "c",
     "envp.h": "c",
-    "typeinfo": "c"
+    "typeinfo": "c",
+    "minishell_bonus.h": "c"
   }
 }

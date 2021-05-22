@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   exit_minshell_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 18:27:12 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
 static void	free_cmd_history(t_history	*cmd)
 {

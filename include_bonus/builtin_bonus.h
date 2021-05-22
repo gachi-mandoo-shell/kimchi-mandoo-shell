@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   builtin_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/08 23:02:36 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:16:04 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef BUILTIN_BONUS_H
+# define BUILTIN_BONUS_H
 
-static void	free_cmd_history(t_history	*cmd)
-{
-	t_history	*tmp;
+# include "minishell_bonus.h"
 
-	while (cmd)
-	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
-	}
-}
+int		ft_echo(t_list *args);
+int		ft_cd(t_list *args);
+int		ft_export(t_list *args);
+int		compare(t_list *a, t_list *b);
+int		ft_unset(t_list *args);
+int		ft_env(t_list *args, t_check *g);
+int		ft_pwd(void);
+int		ft_exit(t_list *args);
 
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
-}
+#endif

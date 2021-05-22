@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   handle_status_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/22 16:57:57 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:24:29 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+int	handle_status(int status)
 {
-	t_history	*tmp;
+	int		sig;
 
-	while (cmd)
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
 	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
+		sig = WTERMSIG(status);
+		if (sig == SIGINT)
+			return (130);
+		if (sig == SIGQUIT)
+		{
+			ft_putstr_fd("Quit: 3\n", 1);
+			return (131);
+		}
+		return (128 + sig);
 	}
-}
-
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	return (1);
 }

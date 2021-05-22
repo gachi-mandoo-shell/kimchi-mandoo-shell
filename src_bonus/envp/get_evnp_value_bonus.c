@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   get_evnp_value_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/11 12:51:06 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:23:40 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+char	*get_envp_value(char *name)
 {
-	t_history	*tmp;
+	char	*result;
+	t_list	*env;
 
-	while (cmd)
-	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
-	}
-}
-
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	env = get_envp(name, g_sh.envp);
+	if (!env || !ft_strchr(env->content, '='))
+		result = ft_strdup("");
+	else
+		result = ft_strdup(env->content + ft_strlen(name) + 1);
+	return (result);
 }

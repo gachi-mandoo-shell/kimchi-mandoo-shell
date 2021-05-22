@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   util_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 18:13:06 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:26:35 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 18:26:31 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#ifndef UTIL_BONUS_H
+# define UTIL_BONUS_H
 
-# include "minishell.h"
+# include "minishell_bonus.h"
 
 int		getch(void);
 void	print_PS(void);

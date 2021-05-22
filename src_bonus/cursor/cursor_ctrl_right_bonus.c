@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   cursor_ctrl_right_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/15 22:17:57 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:22:42 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+void	cursor_ctrl_right(void)
 {
-	t_history	*tmp;
-
-	while (cmd)
+	while (g_sh.cmd_i < g_sh.cmd_s && g_sh.line[g_sh.cmd_i] == ' ')
 	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
+		cursor_right();
+		++g_sh.cmd_i;
 	}
-}
-
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	while (g_sh.cmd_i < g_sh.cmd_s && g_sh.line[g_sh.cmd_i] != ' ')
+	{
+		cursor_right();
+		++g_sh.cmd_i;
+	}
 }

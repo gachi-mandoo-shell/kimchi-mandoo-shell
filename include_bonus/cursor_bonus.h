@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   cursor_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/05 15:29:48 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:16:02 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef CURSOR_BONUS_H
+# define CURSOR_BONUS_H
 
-static void	free_cmd_history(t_history	*cmd)
-{
-	t_history	*tmp;
+# include "minishell_bonus.h"
 
-	while (cmd)
-	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
-	}
-}
+int		putchar_tc(int tc);
+void	delete_line(void);
+void	delete_char(void);
+void	cursor_left(void);
+void	cursor_right(void);
+void	cursor_ctrl_left(void);
+void	cursor_ctrl_right(void);
+void	clear_line(void);
 
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
-}
+#endif
