@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   get_envp_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/09 12:24:13 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:23:35 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+t_list	*get_envp(char *name, t_list *envp)
 {
-	t_history	*tmp;
+	char	*ptr;
+	int		len;
 
-	while (cmd)
+	ptr = ft_strchr(name, '=');
+	if (ptr)
+		len = ptr - name;
+	else
+		len = ft_strlen(name);
+	while (envp)
 	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
+		if (!ft_strncmp(envp->content, name, len))
+		{
+			if (*(char *)(envp->content + len) == '=' || \
+				*(char *)(envp->content + len) == '\0')
+				return (envp);
+		}
+		envp = envp->next;
 	}
-}
-
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	return (NULL);
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   ft_pwd_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/04/26 21:16:26 by yjung             #+#    #+#             */
+/*   Updated: 2021/05/22 18:22:14 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+int	ft_pwd(void)
 {
-	t_history	*tmp;
+	char	name[PATH_MAX];
+	int		status;
 
-	while (cmd)
+	status = 0;
+	if (getcwd(name, PATH_MAX) == NULL)
 	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
+		ft_error_print("pwd", NULL, strerror(errno));
+		return (FAIL);
 	}
-}
-
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	else
+		ft_putendl_fd(name, STDOUT_FILENO);
+	return (status);
 }

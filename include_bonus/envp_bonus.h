@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   envp_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/09 12:23:37 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 18:16:19 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ENVP_BONUS_H
+# define ENVP_BONUS_H
 
-static void	free_cmd_history(t_history	*cmd)
-{
-	t_history	*tmp;
+# include "minishell_bonus.h"
 
-	while (cmd)
-	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
-	}
-}
+t_list	*get_envp(char *name, t_list *envp);
+char	*get_envp_value(char *name);
+int		set_envp(char *env);
+int		remove_envp(char *value);
 
-void	exit_minishell(int exitcode)
-{
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
-}
+#endif

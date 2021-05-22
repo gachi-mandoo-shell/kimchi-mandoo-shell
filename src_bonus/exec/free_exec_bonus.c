@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_minshell.c                                    :+:      :+:    :+:   */
+/*   free_exec_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/07 01:29:10 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:11:36 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/12 19:59:36 by yjung             #+#    #+#             */
+/*   Updated: 2021/05/22 18:24:08 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_bonus.h"
 
-static void	free_cmd_history(t_history	*cmd)
+int	ft_free_cmd(void *target, int ret)
 {
-	t_history	*tmp;
-
-	while (cmd)
-	{
-		tmp = cmd->prev;
-		ft_free(cmd->cmd);
-		ft_free(cmd->edit_cmd);
-		ft_free(cmd);
-		cmd = tmp;
-	}
+	if (target != NULL)
+		free_CMD(target);
+	return (ret);
 }
 
-void	exit_minishell(int exitcode)
+void	free_g(t_check *g)
 {
-	ft_lstclear(&g_sh.envp, ft_free);
-	free_cmd_history(g_sh.cmd);
-	exit(exitcode);
+	if (g->pipe_fd)
+		free_pipe(g->pipe_fd);
+}
+
+void	free_pipe(void *data)
+{
+	t_pi_fd	*pipe;
+
+	pipe = data;
+	if (pipe)
+		ft_free(pipe);
 }
