@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 13:41:05 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:16:36 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 18:53:09 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		parse_cmd_err_check(char *args, char *print_args);
 // ft_error.c
 void	ft_error_print(char *msg, char *args, char *val);
 // free_exec.c
-int		ft_free_cmd(void *target, int ret);
+int		ft_free_cmd(t_cmd *new_cmd, int ret);
 void	free_pipe(void *data);
 void	free_g(t_check *g);
 // parse_cmd.c

@@ -10,6 +10,7 @@
     "cursor.h": "c",
     "envp.h": "c",
     "typeinfo": "c",
-    "minishell_bonus.h": "c"
+    "minishell_bonus.h": "c",
+    "exec_bonus.h": "c"
   }
 }

@@ -6,16 +6,21 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 19:59:36 by yjung             #+#    #+#             */
-/*   Updated: 2021/05/22 18:24:08 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 18:55:59 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_bonus.h"
 
-int	ft_free_cmd(void *target, int ret)
+int	ft_free_cmd(t_cmd *new_cmd, int ret)
 {
-	if (target != NULL)
-		free_CMD(target);
+	if (new_cmd)
+	{
+		ft_free(new_cmd->cmd);
+		if (new_cmd->args > (t_list *)PARSE_ERROR_COUNT)
+			ft_lstclear(&new_cmd->args, ft_free);
+		free(new_cmd);
+	}
 	return (ret);
 }
 
