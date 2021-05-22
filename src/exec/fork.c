@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:45:57 by yjung             #+#    #+#             */
-/*   Updated: 2021/05/21 22:33:38 by yjung            ###   ########.fr       */
+/*   Updated: 2021/05/22 17:27:53 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ int	builtin_pipe_set(t_cmd *cmds, t_check *g)
 		status = ft_cmd_exec(cmds, g);
 		exit(status);
 	}
+	g_sh.pid = pid;
 	waitpid(pid, &status, WUNTRACED);
-	g_sh.status += (status >> 8) & 0xff;
+	g_sh.status = handle_status(status);
 	ft_redir_close(g);
 	ft_pipe_close(g);
 	return (g_sh.status);
@@ -74,8 +75,9 @@ int	ft_cmd_set(t_cmd *cmds, t_check *g)
 		status = ft_make_cmd(cmds->cmd, cmds->args);
 		exit(status);
 	}
+	g_sh.pid = pid;
 	waitpid(pid, &status, WUNTRACED);
-	g_sh.status += (status >> 8) & 0xff;
+	g_sh.status = handle_status(status);
 	ft_redir_close(g);
 	ft_pipe_close(g);
 	return (g_sh.status);

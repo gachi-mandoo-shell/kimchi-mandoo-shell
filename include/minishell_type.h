@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 12:34:36 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/21 17:19:17 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 17:15:43 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_minishell
 	int				signal;
 	int				status;
 	int				isps2;
+	int				pid;
 	int				eof;
 	int				read_fd;
 	char			*line;

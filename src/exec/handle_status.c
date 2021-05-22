@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   handle_status.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/08 23:02:36 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 17:26:53 by jaeskim          ###   ########.fr       */
+/*   Created: 2021/05/22 16:57:57 by jaeskim           #+#    #+#             */
+/*   Updated: 2021/05/22 17:12:46 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-# include "minishell.h"
+int	handle_status(int status)
+{
+	int		sig;
 
-int		ft_echo(t_list *args);
-int		ft_cd(t_list *args);
-int		ft_export(t_list *args);
-int		compare(t_list *a, t_list *b);
-int		ft_unset(t_list *args);
-int		ft_env(t_list *args, t_check *g);
-int		ft_pwd(void);
-int		ft_exit(t_list *args);
-
-#endif
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+	{
+		sig = WTERMSIG(status);
+		if (sig == SIGINT)
+			return (130);
+		if (sig == SIGQUIT)
+		{
+			ft_putstr_fd("Quit: 3\n", 1);
+			return (131);
+		}
+		return (128 + sig);
+	}
+	return (1);
+}
