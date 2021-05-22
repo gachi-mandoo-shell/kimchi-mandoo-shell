@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parse_util.h"
+#include "minishell_bonus.h"
+#include "parse_util_bonus.h"
 
 int	is_wildcard(char *str)
 {
