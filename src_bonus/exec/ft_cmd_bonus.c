@@ -6,11 +6,11 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 22:26:53 by yjung             #+#    #+#             */
-/*   Updated: 2021/05/22 18:24:12 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:36:02 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_bonus.h"
+#include "minishell.h"
 
 int	ft_cmd_exec(t_cmd *cmds, t_check *g)
 {
@@ -23,7 +23,7 @@ int	ft_cmd_exec(t_cmd *cmds, t_check *g)
 	else if (ft_strcmp(cmds->cmd, "pwd") == 0)
 		status = ft_pwd();
 	else if (ft_strcmp(cmds->cmd, "env") == 0)
-		status = ft_env(cmds->args, g);
+		status = ft_env();
 	else if (ft_strcmp(cmds->cmd, "export") == 0)
 		status = ft_export(cmds->args);
 	else if (ft_strcmp(cmds->cmd, "unset") == 0)

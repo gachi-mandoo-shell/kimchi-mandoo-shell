@@ -6,12 +6,12 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 13:37:29 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/22 18:25:11 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:36:28 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_bonus.h"
-#include "parse_util_bonus.h"
+#include "minishell.h"
+#include "parse_util.h"
 
 static char	*joinstatus(char **token, char *result)
 {
@@ -78,12 +78,12 @@ static int	handle_flag(char *token, int *flag)
 		*flag ^= TK_QOUTE;
 		return (1);
 	}
-	else if (!(*flag & ~(TK_QOUTE)) && *token == '\\')
+	else if (!(*flag & ~(TK_QOUTES)) && *token == '\\')
 	{
 		*flag |= TK_ESCAPE;
 		return (1);
 	}
-	else if ((*flag & TK_ESCAPE) && *(token - 1) != '\\')
+	else if ((*flag & TK_ESCAPE) && *(token - 1) == '\\')
 		*flag &= ~TK_ESCAPE;
 	return (0);
 }

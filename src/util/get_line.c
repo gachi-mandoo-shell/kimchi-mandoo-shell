@@ -6,7 +6,7 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 18:19:08 by jaeskim           #+#    #+#             */
-/*   Updated: 2021/05/21 17:14:15 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:33:44 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,8 @@ void	get_line(void)
 	!(g_sh.cmd_s = 0) && !(g_sh.eof = 0) && (c = getch()));
 	while (c != (int) '\n')
 	{
-		if (check_EOF(c))
+		if (check_EOF(c) || (g_sh.signal == SIGINT && g_sh.isps2))
 			break ;
-		if (g_sh.signal == SIGINT)
-			return ;
 		if (is_special_key(c))
 			handle_key_input(c);
 		else if (ft_isprint(c))

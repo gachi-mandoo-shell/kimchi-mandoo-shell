@@ -6,11 +6,11 @@
 /*   By: jaeskim <jaeskim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 15:45:57 by yjung             #+#    #+#             */
-/*   Updated: 2021/05/22 18:24:03 by jaeskim          ###   ########.fr       */
+/*   Updated: 2021/05/22 22:35:51 by jaeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_bonus.h"
+#include "minishell.h"
 
 int	builtin_cmd_set(t_cmd *cmds, t_check *g)
 {
@@ -49,6 +49,7 @@ int	builtin_pipe_set(t_cmd *cmds, t_check *g)
 	}
 	g_sh.pid = pid;
 	waitpid(pid, &status, WUNTRACED);
+	g_sh.pid = 0;
 	g_sh.status = handle_status(status);
 	ft_redir_close(g);
 	ft_pipe_close(g);
@@ -77,6 +78,7 @@ int	ft_cmd_set(t_cmd *cmds, t_check *g)
 	}
 	g_sh.pid = pid;
 	waitpid(pid, &status, WUNTRACED);
+	g_sh.pid = 0;
 	g_sh.status = handle_status(status);
 	ft_redir_close(g);
 	ft_pipe_close(g);
